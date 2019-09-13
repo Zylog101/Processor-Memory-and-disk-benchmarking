@@ -1,0 +1,94 @@
+CPU Benchmark Execution
+
+Manual execution
+	Change directory to CPU/
+	Compile by typing "make"
+	Enter the following command  
+		./test <IOPS/FLOPS> <2><no_threads>
+	with the below values for first and third parameter
+
+o	First parameter values : 1 for IOPS , 2 for FLOPS
+o	Third parameter values : 1, 2, 4 and 8
+o	Example:
+		 ./test 1 2 8 
+	for executing cpu benchmark for IOPS with 8 threads
+
+NOTE: second parameter 2 is a dummy here left for future enhancements
+
+results will be seen in files IOPS and FLOPS
+to generate graph use 
+	gnuplot plot.p
+result will be in cpuPerf.png
+
+To execute our pre- written script found as release.sh in CPU/
+	Change directory to CPU/
+	./release.sh 
+
+To execute Linpack CPU benchmark 
+	Change directory to CPU/linpack/
+	./runme_xeon64
+-----------------------------------------------------------------------------------------------------------------
+Memory Benchmark Execution
+
+Manual execution
+	Change directory to Memory/
+	Compile by typing "make"
+	Enter the following command  
+		./memory_benchmark <parameter_space> <no_threads> <block_size>
+	with the below values as parameters
+
+o	parameter_space : "1" read/write , "2" sequential write, "3" random write
+o	no_threads: 1, 2, 4 and 8 either one of them
+o	block_size:"1" for 8B,"2" for 8KB, "3" for 8MB, "4" for 80MB 
+o	Example:
+		 ./memory_benchmark 1 2 2
+	for executing memory benchmark for read/write opeation with 2 threads and 8KB block size
+to generate graphs for the result use command
+	gnuplot plot.p
+results will be seen in  	
+Rand_WritePerf.png, Read_WritePerf.png, Seq_WritePerf.png and Latency.png
+
+To execute our pre- written script found as release.sh in Memory/
+	Change directory to Memory/
+	./memory_benchmark.sh
+results are seen in files with names given as <parameter_space><block_size>
+for example : 11 file will have values for reads/write operation for block size of 8B
+-------------------------------------------------------------------------------------------------------------
+Disk Benchmark Execution
+
+Manual execution
+	Change directory to Disk/
+	Compile by typing "make"
+
+	generate the require input files by using command (need to do without which program fails to execute)
+		./create_disk_files
+
+	Enter the following command  
+		./disk_benchmark <parameter_space> <no_threads> <block_size>
+	with the below values as parameters
+
+o	parameter_space  : "1" read/write , "2" sequential read, "3" random read
+o	no_threads: "1", "2", "4" and "8" either one of them
+o	block_size :"1" for 8B,"2" for 8KB, "3" for 8MB, "4" for 80MB 
+o	Example:
+		 ./disk_benchmark 1 2 2
+	for executing disk benchmark for read/write opeation with 2 threads and 8KB block size
+
+To execute our pre- written script found as release.sh in Disk/
+	Change directory to Disk/
+	./release.sh
+results are seen in files with names given as <parameter_space><block_size>
+for example : 11 file will have values for reads/write operation for block size of 8B
+gnu plotted graphs for Disk can be seen by using the following commands
+gnuplot plotlat.p
+gnuplot plotrand.p
+gnuplot plotrw.p
+gnuplot plotseq.p
+resulting in the generation of 
+ 	Lat.png
+Rand_ReadPerf.png
+Read_WritePerf.png
+Seq_ReadPerf.png
+
+
+ 
